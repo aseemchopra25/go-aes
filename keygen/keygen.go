@@ -1,16 +1,16 @@
 package keygen
 
 import (
+	"crypto/rand"
 	"encoding/hex"
-	"fmt"
-	"math/rand"
+
+	"github.com/aseemchopra25/go-aes/db"
 )
 
 func KeyGen() {
-	b := make([]byte, 16) // 16 bit key for AES-128
-	if _, err := rand.Read(b); err != nil {
+	b := make([]byte, 16)                          // 16 bit key for AES-128
+	if _, err := rand.Reader.Read(b); err != nil { //switched math/rand to crypto/rand
 		panic(err.Error())
 	}
-	key := hex.EncodeToString(b)
-	fmt.Println(key)
+	db.Db.Password = hex.EncodeToString(b)
 }
