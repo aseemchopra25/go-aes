@@ -1,6 +1,7 @@
 package keygen
 
 import (
+	"encoding/hex"
 	"fmt"
 	"math/rand"
 )
@@ -10,5 +11,6 @@ func KeyGen() {
 	if _, err := rand.Read(b); err != nil {
 		panic(err.Error())
 	}
-	fmt.Println(b)
+	key := hex.EncodeToString(b)
+	fmt.Println(key)
 }
