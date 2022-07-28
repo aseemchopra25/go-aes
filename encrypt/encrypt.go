@@ -5,6 +5,7 @@ import (
 	"crypto/cipher"
 	"crypto/rand"
 	"encoding/hex"
+	"fmt"
 
 	"github.com/aseemchopra25/go-aes/db"
 )
@@ -27,6 +28,9 @@ func Encrypt() {
 		panic(err.Error())
 	}
 	ciphertext := aesGCM.Seal(nonce, nonce, []byte(db.Db.Plaintext), nil)
+	fmt.Println("Ciphertext Generated:")
+	fmt.Println(ciphertext)
+	fmt.Println("")
 	db.Db.Ciphertext = hex.EncodeToString(ciphertext)
 
 }

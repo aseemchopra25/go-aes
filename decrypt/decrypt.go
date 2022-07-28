@@ -28,5 +28,10 @@ func Decrypt() {
 	nonce, ciphertext := enc[:nonceSize], enc[nonceSize:]
 	dec, err := aesGCM.Open(nil, nonce, ciphertext, nil)
 	handle(err)
+	fmt.Println("Decrypted Output in bytes:")
+	fmt.Println(dec)
+	fmt.Println("")
+	fmt.Println("Decrypted Output in UTF-8:")
 	fmt.Println(string(dec))
+	fmt.Println("")
 }
