@@ -15,10 +15,10 @@ func handle(err error) {
 	}
 }
 
-func Decrypt() {
+func Decrypt(encrypted string) {
 	key, err := hex.DecodeString(db.Db.Password)
 	handle(err)
-	enc, err := hex.DecodeString(db.Db.Ciphertext)
+	enc, err := hex.DecodeString(encrypted)
 	handle(err)
 	block, err := aes.NewCipher(key)
 	handle(err)

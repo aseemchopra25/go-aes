@@ -16,7 +16,7 @@ func handle(err error) {
 	}
 }
 
-func Encrypt() {
+func Encrypt(plaintext string) {
 	key, err := hex.DecodeString(db.Db.Password) // retrieve bytes
 	handle(err)
 	block, err := aes.NewCipher(key)
@@ -27,7 +27,7 @@ func Encrypt() {
 	if _, err := rand.Reader.Read(nonce); err != nil {
 		panic(err.Error())
 	}
-	ciphertext := aesGCM.Seal(nonce, nonce, []byte(db.Db.Plaintext), nil)
+	ciphertext := aesGCM.Seal(nonce, nonce, []byte(plaintext), nil)
 	fmt.Println("Ciphertext Generated:")
 	fmt.Println(ciphertext)
 	fmt.Println("")
